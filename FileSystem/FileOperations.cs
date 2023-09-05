@@ -74,20 +74,15 @@ namespace FileSystem
                 if (File.Exists(filePath))
                 {
                     // Create the destination directory if it doesn't exist.
-                    Directory.CreateDirectory(Path.GetDirectoryName(destinationPath)!);
+                    Directory.CreateDirectory(Path.GetDirectoryName(destinationPath) !);
 
                     // Move the file to the destination folder.
                     File.Move(filePath, destinationPath);
 
                     // Validate whether the file exists in the new location.
-                    if (File.Exists(destinationPath))
-                    {
-                        Console.WriteLine($"File moved successfully to: {destinationPath}");
-                    }
-                    else
-                    {
-                        Console.WriteLine("File move operation failed.");
-                    }
+                    Console.WriteLine(File.Exists(destinationPath)
+                        ? $"File moved successfully to: {destinationPath}"
+                        : "File move operation failed.");
                 }
                 else
                 {
@@ -111,7 +106,7 @@ namespace FileSystem
                 if (File.Exists(filePath))
                 {
                     // Create the destination directory if it doesn't exist.
-                    Directory.CreateDirectory(Path.GetDirectoryName(destinationPath)!);
+                    Directory.CreateDirectory(Path.GetDirectoryName(destinationPath) !);
 
                     // Copy the file to the destination folder.
                     File.Copy(filePath, destinationPath, true);
@@ -143,14 +138,7 @@ namespace FileSystem
                     File.Delete(filePath);
 
                     // Validate whether the file still exists.
-                    if (File.Exists(filePath))
-                    {
-                        Console.WriteLine("File deletion failed.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("File deleted successfully.");
-                    }
+                    Console.WriteLine(File.Exists(filePath) ? "File deletion failed." : "File deleted successfully.");
                 }
                 else
                 {
